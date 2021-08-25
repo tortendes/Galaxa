@@ -1,0 +1,35 @@
+{
+  "name": "galaxa",
+  "version": "3.0.0",
+  "description": "The official TFG bot.",
+  "main": "src/bot.ts",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "consola": "^2.15.3",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.13.7",
+    "yiff": "^3.1.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --poll ./src/bot.ts",
+    "compile": "tsc",
+    "start-ts": "ts-node ./src/bot.ts",
+    "start-js": "node out/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/texorexo/Galaxa.git"
+  },
+  "author": "texorexo",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/texorexo/Galaxa/issues"
+  },
+  "homepage": "https://github.com/texorexo/Galaxa#readme"
+}
