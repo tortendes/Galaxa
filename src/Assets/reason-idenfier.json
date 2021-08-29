@@ -1,0 +1,24 @@
+{
+    "UE": [
+        {
+            "item": "Follow Discord Terms of Service or Discord Guidelines.",
+            "violation": {
+                "type": "BAN",
+                "duration": 0,
+                "appealable": false
+            }
+        },
+        {
+            "item": "Be at least 13 years of age.",
+            "violation": {
+                "type": "BAN",
+                "duration": 0,
+                "appealable": true
+            }
+        },
+        {
+            "item": "Cooperate with server staff."
+        },
+        {}
+    ]
+}

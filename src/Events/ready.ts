@@ -4,8 +4,12 @@ import { Event, Command } from '../Interfaces';
 export const event: Event = {
     name: 'ready',
     run: (client) => {
+        if (!client.user) {
+            return client.logger.fatal('No bot user found.')
+        }
+    
         client.user.setStatus('dnd')
-        client.user.setPresence({ activities: [{ name: 'Alpha Pre-Relase', type: 'PLAYING', url: 'https://furrygalaxy.gq' }] })
+        client.user.setPresence({ activities: [{ name: 'Alpha Pre-Relase', type: 'WATCHING' }] })
         client.logger.start('Bot has started')
 
         setInterval(() => {

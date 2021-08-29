@@ -1,8 +1,8 @@
 import { Event, Command } from "../Interfaces";
-import { createCanvas, loadImage, registerFont } from "canvas";
+import { Canvas, createCanvas, loadImage, registerFont } from "canvas";
 import { MessageAttachment, MessageEmbed } from "discord.js";
 
-const applyText = (canvas, text, font, style) => {
+const applyText = (canvas: Canvas, text: string, font: string, style: 'black' | 'bold' | 'semibold' | 'regular' | 'light' | 'thin') => {
 	const context = canvas.getContext('2d');
 
 	// Declare a base size of the font
@@ -70,7 +70,7 @@ export const event: Event = {
                 }
             })
 
-            member.guild.channels.cache.get('695231971676258347').send({ content: `<@${member.id}>`, embeds: [embed], files: [attachment] })
+            member.guild.channels.cache.get('695231971676258347').send({ content: `<@${member.id}>  (${member.tag}) has joined.`, embeds: [embed], files: [attachment] })
         })
     }
 }

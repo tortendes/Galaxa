@@ -1,5 +1,5 @@
 export interface Config {
-    token: string,
-    mongoURI: string,
-    prefix: string
+    token: string | undefined,
+    mongoURI: string | undefined,
+    prefix: string | undefined
 }

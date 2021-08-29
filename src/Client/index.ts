@@ -61,7 +61,7 @@ class GalaxaClient extends Client {
                 this.commands.set(command.name, command);
 
                 if (command?.aliases.length !== 0) {
-                    command.aliases.forEach((alias) => {
+                    command.aliases.forEach((alias: string) => {
                         this.aliases.set(alias, command);
                     });
                 }
@@ -90,7 +90,7 @@ class GalaxaClient extends Client {
             timestamp: Date.now(),
             footer: {
                 text: 'Galaxa 3 | Under GPLv3',
-                iconURL: this.user.displayAvatarURL({
+                iconURL: this.user?.displayAvatarURL({
                     dynamic: true,
                     format: 'png'
                 })
