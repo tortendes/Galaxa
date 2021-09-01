@@ -1,6 +1,8 @@
 import { Command } from "../../Interfaces";
+import { Message, GuildMember } from "discord.js";
 
 import Punishment from "../../Models/Punishment";
+import config from "../../../config";
 
 export const command: Command = {
     name: 'warn',
@@ -19,8 +21,19 @@ export const command: Command = {
         ||
         message.member.roles.cache.some(role => role.id == '822723511919443969')
         ) {
-            const user = message.mentions.users.first() || message.guild?.members.cache.get(args[0])
-            let reason = args.splice(1).join(" ")
+            function ResolveMember(message: Message, arg: string): GuildMember | undefined {
+                if (!message || !arg) return;
+
+                if (message.mentions?.members?.first())
+                    return message.mentions.members.first();
+                if (!isNaN(parseInt(arg, 10))) return message.guild?.members.cache.get(arg);
+            }
+
+            const user = ResolveMember(message, args[0])
+            let duration = args[1]
+            let reason = args.splice(2).join(" ")
+
+            const mutedRole = message.guild?.roles.cache.get(config.roles.MUTED_ROLE.toString())
 
             if (!user) {
                 const error = client.embed({
@@ -32,18 +45,42 @@ export const command: Command = {
 
             if (!reason) reason = "No reason defined"
 
+            if (!mutedRole) {
+                try {
+                    message.guild?.roles.create({
+                        name: 'Muted',
+                        color: '#2A2A2A',
+                        permissions: []
+                    })
+                } catch (error) {
+                    const embed = client.embed({
+                        'title': 'Cockenspaniel Error',
+                        'color': '#DC2626',
+                        'description': 'An error occured while creating a role. Please wait for a few moments and try again.'
+                    })
+
+                    message.reply({ embeds: [embed] })
+                }
+            }
+
+            user.roles.add(mutedRole)
+            user.roles.remove(message.guild?.roles.cache.get(r => r.name === "Space Cadets"))
+
             Punishment.create({
-                type: "WARN",
+                type: "MUTE",
                 userID: user.id,
                 reason: reason
             })
 
+            
+
             const embed = client.embed({
-                title: 'Warning',
-                color: '#FCBB17',
-                description: `You have been warned in ${message.guild?.name}. For more details, please mind to read the stuff below.`,
+                title: 'Muted',
+                color: '#2A2A2A',
+                description: `You have been muted in ${message.guild?.name}. For more details, please mind to read the stuff below.`,
                 fields: [
                     { name: 'Reason', value: reason, inline: true },
+                    { name: 'Duration', value: duration, inline: true },
                     { name: 'Strike Count', value: 'undefined', inline: true  },
                 ]
             })

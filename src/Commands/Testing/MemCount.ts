@@ -4,6 +4,6 @@ export const command: Command = {
     name: 'memcount',
     aliases: ['mem'],
     run: (client, message, args) => {
-        message.reply(message.guild.memberCount.toString())
+        console.log(args.splice(0).join(" "))
     }
 }

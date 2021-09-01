@@ -2,13 +2,13 @@ import Mongoose, { model, Schema } from "mongoose";
 
 interface ModelInterface extends Document {
     punishmentId: number,
-    type: string
+    type: "WARN" | "MUTE" | "KICK" | "BAN"
 }
 
 const PunishmentSchema: Schema<ModelInterface> = new Schema({
     punsihmentId: Mongoose.Schema.Types.Decimal128,
     type: String,
-    userId: Number,
+    userID: Number,
     reason: String,
     createdAt: {
         type: Date,

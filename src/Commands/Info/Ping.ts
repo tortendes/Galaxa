@@ -9,9 +9,9 @@ export const command: Command = {
         const res = new MessageEmbed()
             .setTitle('Latency information')
             .setColor('#4ae9f7')
-            .setDescription(`🔌 ${client.ws.ping}ms\n🤖 ${Date.now() - message.createdTimestamp}ms`)
+            .setDescription(`🔌 ${client.ws.ping}ms\n🤖 ${message.createdTimestamp - Date.now()}ms`)
             .setTimestamp()
-            .setFooter('Galaxa 3 | Under GPLv3', client.user.displayAvatarURL({  }))
+            .setFooter('Galaxa 3 | Under GPLv3', client.user?.displayAvatarURL())
         
         const init = new MessageEmbed()
             .setDescription('Testing latency.')

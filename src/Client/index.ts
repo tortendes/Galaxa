@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Client, Collection, Intents, MessageEmbed, MessageEmbedOptions } from 'discord.js'
 import { connect } from 'mongoose';
 import path from  'path';
